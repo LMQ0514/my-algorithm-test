@@ -1,6 +1,9 @@
 package com.lmq;
 import java.util.Date;
 
+/**
+ * 雪花算法，生成唯一id
+ */
 public class SnowFlake {
     //工作机器id
     private long workId;

@@ -1,5 +1,8 @@
 package com.lmq;
 
+/**
+ * 稀疏数组，压缩数组大小
+ */
 public class SparseArray {
     public int[][] sparse(int[][] array){
         int sum = 0;
