@@ -1,8 +1,8 @@
-package com.lmq;
+package com.lmq.list;
 
 import java.util.Stack;
 
-import static com.lmq.Order.*;
+import static com.lmq.list.Order.*;
 
 /**
  * 单向链表,顺序添加

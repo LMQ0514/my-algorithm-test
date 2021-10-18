@@ -1,4 +1,4 @@
-package com.lmq;
+package com.lmq.list;
 
 /**
  * 约瑟夫问题

@@ -1,4 +1,4 @@
-package com.lmq;
+package com.lmq.list;
 
 /**
  * 单向链表,添加到尾部

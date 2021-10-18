@@ -1,4 +1,4 @@
-package com.lmq;
+package com.lmq.list;
 
 /**
  * 双向链表

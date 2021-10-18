@@ -1,4 +1,4 @@
-package com.lmq;
+package com.lmq.list;
 
 /**
  * 稀疏数组，压缩数组大小

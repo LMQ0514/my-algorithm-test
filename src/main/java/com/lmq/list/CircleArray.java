@@ -1,4 +1,4 @@
-package com.lmq;
+package com.lmq.list;
 
 import java.util.Scanner;
 

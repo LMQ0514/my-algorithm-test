@@ -1,4 +1,6 @@
-package com.lmq;
+package com.lmq.stack;
+
+import com.lmq.util.PackNotation;
 
 import java.util.Stack;
 
@@ -7,10 +9,13 @@ import java.util.Stack;
  */
 public class ReversePolandNotation {
     public static void main(String[] args) {
-        String packNotation = "3,4,+,51,*,6,-";
-        Calculator calculator = new Calculator();
-        String calculate = calculator.calculate(packNotation);
-        System.out.println(calculate);
+        String s = "123+(1+1)+9(45+9)";
+        PackNotation packNotation = new PackNotation();
+        String scan = packNotation.scan(s);
+        String[] split = scan.split(",");
+        for (String s1 : split) {
+            System.out.print(s1);
+        }
     }
 }
 class Calculator{
