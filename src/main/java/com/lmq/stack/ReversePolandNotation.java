@@ -2,6 +2,7 @@ package com.lmq.stack;
 
 import com.lmq.util.PackNotation;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 /**
@@ -9,21 +10,20 @@ import java.util.Stack;
  */
 public class ReversePolandNotation {
     public static void main(String[] args) {
-        String s = "123+(1+1)+9(45+9)";
+        String s = "11+((2+3)*4)-5";
         PackNotation packNotation = new PackNotation();
+        Transformation transformation = new Transformation();
+        Calculator calculator = new Calculator();
         String scan = packNotation.scan(s);
-        String[] split = scan.split(",");
-        for (String s1 : split) {
-            System.out.print(s1);
-        }
+        ArrayList<String> parse = transformation.parse(scan);
+        System.out.println(calculator.calculate(parse));
     }
 }
 class Calculator{
-    public String calculate(String packNotation){
-        String[] split = packNotation.split(",");
+    public String calculate(ArrayList<String> packNotation){
         Stack<String> stringStack = new Stack<>();
 
-        for (String str : split) {
+        for (String str : packNotation) {
             if(str.matches("\\d+")){
                 stringStack.push(str);
             }else {
