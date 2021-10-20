@@ -17,7 +17,7 @@ public class Bubbling {
         Date begin = new Date(System.currentTimeMillis());
         sort(array);
         Date end = new Date(System.currentTimeMillis());
-        System.out.println((end.getTime() - begin.getTime()) / 1000);
+        System.out.println((end.getTime() - begin.getTime()));
     }
 
     public static int[] sort(int[] array){
