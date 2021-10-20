@@ -47,6 +47,7 @@ public class QuickSort {
             }
         }
         //向结束递归逼近的条件
+        //当出现两个元素数组时，如果没有如下判断会死归
         if(leftIndex == rightIndex){
             leftIndex += 1;
             rightIndex -= 1;
