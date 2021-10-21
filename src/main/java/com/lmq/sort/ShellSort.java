@@ -9,6 +9,8 @@ import java.util.Random;
  *
  * 2，希尔排序(插入)
  * 根据数组长度确定步长，根据步长分组比较
+ *
+ * O(n*log n)
  */
 public class ShellSort {
     public static void main(String[] args) {

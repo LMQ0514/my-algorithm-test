@@ -3,6 +3,9 @@ package com.lmq.sort;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
+/**
+ * O(n*log n)
+ */
 public class QuickSort {
     public static void main(String[] args) {
         int[] array = new int[]{5,3,8,7,4,0,6,1,2};

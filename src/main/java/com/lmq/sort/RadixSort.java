@@ -3,8 +3,9 @@ package com.lmq.sort;
 import java.util.Arrays;
 
 /**
- * 基数排序*(桶排序)
+ * 基数排序(桶排序)
  * 属于稳定性排序，两个相同的数据顺序不会改变
+ * O(n*k)
  */
 public class RadixSort {
     public static void main(String[] args) {

@@ -6,6 +6,7 @@ import java.util.Random;
 
 /**
  * 归并排序（分治）
+ * O(n*log n)
  */
 public class MergeSort {
     public static void main(String[] args) {
