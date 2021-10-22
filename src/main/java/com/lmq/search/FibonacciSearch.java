@@ -40,7 +40,7 @@ public class FibonacciSearch {
         for (int j = array.length;j < fib[k];j++){
             temp[j] = array[right];
         }
-        //关键要理解斐波那契数列作用，表示方法所操作数组的长度(temp数组)
+        //关键要理解斐波那契数列作用，斐波那契数列的元素表示的是方法所操作数组的长度(temp数组)
         while (left <= right){
             mid = left + fib[k - 1] - 1;
             if(findVal < temp[mid]){
