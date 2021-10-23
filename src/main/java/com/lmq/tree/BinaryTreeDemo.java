@@ -9,13 +9,18 @@ public class BinaryTreeDemo {
         Node node2 = new Node(2, "关羽");
         Node node3 = new Node(3, "张飞");
         Node node4 = new Node(4, "赵云");
+        Node node5 = new Node(5, "黄忠");
         root.setLeft(node2);
         root.setRight(node3);
         node3.setRight(node4);
+        node3.setLeft(node5);
         BinaryTree binaryTree = new BinaryTree(root);
 //        binaryTree.preOrder();
 //        binaryTree.infixOrder();
-        binaryTree.postOrder();
+//        binaryTree.postOrder();
+        System.out.println(binaryTree.preOrderSearch(5));
+        System.out.println(binaryTree.infixOrderSearch(5));
+        System.out.println(binaryTree.postOrderSearch(5));
     }
 }
 
@@ -37,6 +42,18 @@ class BinaryTree{
     //后序遍历
     public void postOrder(){
         root.postOrder();
+    }
+    //前序查找
+    public Node preOrderSearch(int no){
+        return root.preOrderSearch(no);
+    }
+    //中序查找
+    public Node infixOrderSearch(int no){
+        return root.infixOrderSearch(no);
+    }
+    //后序查找
+    public Node postOrderSearch(int no){
+        return root.postOrderSearch(no);
     }
 }
 
@@ -119,5 +136,59 @@ class Node{
             this.right.postOrder();
         }
         System.out.println(this);
+    }
+    //前序查找
+    public Node preOrderSearch(int no){
+        if(this.id == no){
+            return this;
+        }
+        Node resNode = null;
+        if(this.left != null){
+            resNode = this.left.preOrderSearch(no);
+        }
+        if(resNode != null && resNode.id == no){
+            return resNode;
+        }
+        if(this.right != null){
+            resNode = this.right.preOrderSearch(no);
+        }
+        return resNode;
+    }
+    //中序查找
+    public Node infixOrderSearch(int no){
+        Node resNode = null;
+        if(this.left != null){
+            resNode = this.left.infixOrderSearch(no);
+        }
+        if(resNode != null && resNode.id == no){
+            return resNode;
+        }
+        if(this.id == no){
+            return this;
+        }
+        if(this.right != null){
+            resNode = this.right.infixOrderSearch(no);
+        }
+        return resNode;
+    }
+    //后序查找
+    public Node postOrderSearch(int no){
+        Node resNode = null;
+        if(this.left != null){
+            resNode = this.left.postOrderSearch(no);
+        }
+        if(resNode != null && resNode.id == no){
+            return resNode;
+        }
+        if(this.right != null){
+            resNode = this.right.postOrderSearch(no);
+        }
+        if(resNode != null && resNode.id == no){
+            return resNode;
+        }
+        if(this.id == no){
+            resNode = this;
+        }
+        return resNode;
     }
 }
