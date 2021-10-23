@@ -15,12 +15,15 @@ public class BinaryTreeDemo {
         node3.setRight(node4);
         node3.setLeft(node5);
         BinaryTree binaryTree = new BinaryTree(root);
-//        binaryTree.preOrder();
+        binaryTree.preOrder();
 //        binaryTree.infixOrder();
 //        binaryTree.postOrder();
-        System.out.println(binaryTree.preOrderSearch(5));
-        System.out.println(binaryTree.infixOrderSearch(5));
-        System.out.println(binaryTree.postOrderSearch(5));
+//        System.out.println(binaryTree.preOrderSearch(1));
+//        System.out.println(binaryTree.infixOrderSearch(1));
+//        System.out.println(binaryTree.postOrderSearch(1));
+        System.out.println("*******************************");
+        binaryTree.delete(14);
+        binaryTree.preOrder();
     }
 }
 
@@ -33,7 +36,11 @@ class BinaryTree{
 
     //前序遍历
     public void preOrder(){
-        root.preOrder();
+        if(root != null){
+            root.preOrder();
+        }else {
+            System.out.println("该树为空");
+        }
     }
     //中序遍历
     public void infixOrder(){
@@ -54,6 +61,18 @@ class BinaryTree{
     //后序查找
     public Node postOrderSearch(int no){
         return root.postOrderSearch(no);
+    }
+    //删除
+    public void delete(int no){
+        if(root != null){
+            if(root.getId() == no){
+                root = null;
+                return;
+            }
+            root.delete(no);
+        }else {
+            System.out.println("该树为空");
+        }
     }
 }
 
@@ -190,5 +209,22 @@ class Node{
             resNode = this;
         }
         return resNode;
+    }
+    //删除节点
+    public void delete(int no){
+        if(this.left != null && this.left.id == no){
+            this.left = null;
+            return;
+        }
+        if(this.right != null && this.right.id == no){
+            this.right = null;
+            return;
+        }
+        if(this.left != null){
+            this.left.delete(no);
+        }
+        if(this.right != null){
+            this.right.delete(no);
+        }
     }
 }
