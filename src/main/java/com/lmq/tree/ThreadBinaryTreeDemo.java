@@ -19,8 +19,7 @@ public class ThreadBinaryTreeDemo {
         node2.setRight(node5);
         ThreadBinaryTree threadBinaryTree = new ThreadBinaryTree(root);
         threadBinaryTree.threadNodes();
-        System.out.println(node4.getRight());
-        System.out.println(node5.getLeft());
+        threadBinaryTree.showNodes();
     }
 }
 
@@ -35,7 +34,7 @@ class ThreadBinaryTree{
     public void threadNodes(){
         threadNodes(root);
     }
-
+    //线索化
     public void threadNodes(ThreadNode node){
         if(node == null){
             return;
@@ -51,6 +50,21 @@ class ThreadBinaryTree{
         }
         preNode = node;
         threadNodes(node.getRight());
+    }
+    //中序遍历线索化二叉树
+    public void showNodes(){
+        ThreadNode node = root;
+        while (node != null){
+            while (node.getLeftType() == 0){
+                node = node.getLeft();
+            }
+            System.out.println(node);
+            while (node.getRightType() == 1){
+                node = node.getRight();
+                System.out.println(node);
+            }
+            node = node.getRight();
+        }
     }
 }
 
@@ -121,40 +135,6 @@ class ThreadNode {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
-    }
-
-    //前序遍历
-    public void preOrder() {
-        System.out.println(this);
-        if (this.left != null) {
-            this.left.preOrder();
-        }
-        if (this.right != null) {
-            this.right.preOrder();
-        }
-    }
-
-    //中序遍历
-    public void infixOrder() {
-        if (this.left != null) {
-            this.left.infixOrder();
-            ;
-        }
-        System.out.println(this);
-        if (this.right != null) {
-            this.right.infixOrder();
-        }
-    }
-
-    //后序遍历
-    public void postOrder() {
-        if (this.left != null) {
-            this.left.postOrder();
-        }
-        if (this.right != null) {
-            this.right.postOrder();
-        }
-        System.out.println(this);
     }
 
     //前序查找
