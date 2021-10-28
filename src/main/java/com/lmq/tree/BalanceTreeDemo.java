@@ -2,10 +2,11 @@ package com.lmq.tree;
 
 /**
  * 平衡二叉树
+ * 相对排序二叉树加入旋转方法
  */
 public class BalanceTreeDemo {
     public static void main(String[] args) {
-        int[] array = new int[]{4,3,6,5,7,8};
+        int[] array = new int[]{10,11,7,6,8,9};
         BalanceTree balanceTree = new BalanceTree();
         for (int i = 0;i < array.length;i++){
             balanceTree.addNode(new BalanceNode(array[i]));
@@ -14,6 +15,9 @@ public class BalanceTreeDemo {
         System.out.println();
         System.out.println(balanceTree.getRoot().getLeftHeight());
         System.out.println(balanceTree.getRoot().getRightHeight());
+        System.out.println("***************");
+        System.out.println(balanceTree.search(8).getLeft().getValue());
+        System.out.println(balanceTree.search(8).getRight().getValue());
     }
 }
 class BalanceTree{
@@ -162,6 +166,23 @@ class BalanceNode{
                 this.right.add(node);
             }
         }
+        if(getLeftHeight() - getRightHeight() > 1){
+            if(this.left != null && this.left.getRightHeight() > this.left.getLeftHeight()){
+                this.left.leftRotate();
+                rightRotate();
+            }else {
+                rightRotate();
+            }
+            return;
+        }
+        if(getRightHeight() - getLeftHeight() > 1){
+            if(this.right != null && this.right.getLeftHeight() > this.right.getRightHeight()){
+                this.right.rightRotate();
+                leftRotate();
+            }else {
+                leftRotate();
+            }
+        }
     }
     //中序遍历
     public void infixOrder(){
@@ -231,5 +252,14 @@ class BalanceNode{
         value = right.value;
         left = newNode;
         right = right.right;
+    }
+    //右旋
+    public void rightRotate(){
+        BalanceNode newNode = new BalanceNode(value);
+        newNode.right = right;
+        newNode.left = left.right;
+        value = left.value;
+        left = left.left;
+        right = newNode;
     }
 }
