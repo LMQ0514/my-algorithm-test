@@ -1,6 +1,7 @@
 package com.lmq.graph;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * 简单图结构
@@ -24,7 +25,8 @@ public class Graph {
         graph.insertEdge(1,4);
 
         graph.showGraph();
-        graph.dfs();
+//        graph.dfs();
+        graph.bfs();
     }
 
     public Graph(int n){
@@ -78,7 +80,7 @@ public class Graph {
         }
         return -1;
     }
-
+    //深度优先遍历
     private void dfs(boolean[] isVisit,int i){
         System.out.print(vertex.get(i) + "->");
         isVisit[i] = true;
@@ -90,11 +92,38 @@ public class Graph {
             w = getNextNeighbor(i,w);
         }
     }
-
     public void dfs(){
         for (int i = 0;i < vertex.size();i++){
             if(!isVisit[i]){
                 dfs(isVisit,i);
+            }
+        }
+    }
+    //广度优先遍历
+    private void bfs(boolean[] isVisit,int i){
+        int u;
+        int w;
+        LinkedList queue = new LinkedList();
+        System.out.print(vertex.get(i) + "->");
+        isVisit[i] = true;
+        queue.addLast(i);
+        while (!queue.isEmpty()){
+            u = (Integer) queue.removeFirst();
+            w = getFirstNeighbor(u);
+            while (w != -1){
+                if(!isVisit[w]){
+                    System.out.print(vertex.get(w) + "->");
+                    isVisit[w] = true;
+                    queue.addLast(w);
+                }
+                w = getNextNeighbor(u,w);
+            }
+        }
+    }
+    public void bfs(){
+        for (int i = 0;i < vertex.size();i++){
+            if(!isVisit[i]){
+                bfs(isVisit,i);
             }
         }
     }
