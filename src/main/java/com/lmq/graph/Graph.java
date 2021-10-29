@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Graph {
     private ArrayList<String> vertex;
     private int[][] graph;
+    private boolean[] isVisit;
     private int edge;
 
     public static void main(String[] args) {
@@ -23,11 +24,13 @@ public class Graph {
         graph.insertEdge(1,4);
 
         graph.showGraph();
+        graph.dfs();
     }
 
     public Graph(int n){
         this.vertex = new ArrayList<String>(n);
         this.graph = new int[n][n];
+        this.isVisit = new boolean[n];
     }
 
     public void insertVertex(String str){
@@ -55,6 +58,44 @@ public class Graph {
                 System.out.print(i + " ");
             }
             System.out.println("|");
+        }
+    }
+    //获取第一个邻接节点
+    private int getFirstNeighbor(int nodeIndex){
+        for (int i = 0;i < vertex.size();i++){
+            if(graph[nodeIndex][i] > 0){
+                return i;
+            }
+        }
+        return -1;
+    }
+    //获取下一个邻接节点
+    private int getNextNeighbor(int n1,int n2){
+        for (int k = n2 + 1;k < vertex.size();k++){
+            if(graph[n1][k] > 0){
+                return k;
+            }
+        }
+        return -1;
+    }
+
+    private void dfs(boolean[] isVisit,int i){
+        System.out.print(vertex.get(i) + "->");
+        isVisit[i] = true;
+        int w = getFirstNeighbor(i);
+        while (w != -1){
+            if(!isVisit[w]){
+                dfs(isVisit,w);
+            }
+            w = getNextNeighbor(i,w);
+        }
+    }
+
+    public void dfs(){
+        for (int i = 0;i < vertex.size();i++){
+            if(!isVisit[i]){
+                dfs(isVisit,i);
+            }
         }
     }
 }
