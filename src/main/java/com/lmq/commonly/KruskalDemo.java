@@ -18,9 +18,33 @@ public class KruskalDemo {
         };
 
         KruGraph kruGraph = new KruGraph(chars, line);
-//        kruGraph.showGraph();
-//        System.out.println(kruGraph.getLineCount());
-        System.out.println(Arrays.toString(kruGraph.getEdges()));
+        kruskal(kruGraph);
+    }
+
+    public static void kruskal(KruGraph kruGraph){
+        int index = 0;
+        int[] ends = new int[kruGraph.getLineCount()];
+        Edge[] res = new Edge[kruGraph.getLineCount()];
+        Edge[] edges = kruGraph.getEdges();
+        kruGraph.sortEdge(edges);
+        for (int i = 0;i < edges.length;i++){
+            if(edges[i] == null){
+                break;
+            }
+            int p1 = kruGraph.getIndex(edges[i].getStart());
+            int p2 = kruGraph.getIndex(edges[i].getEnd());
+            int end1 = kruGraph.getEnd(ends, p1);
+            int end2 = kruGraph.getEnd(ends, p2);
+            if(end1 != end2){
+                ends[end1] = end2;
+                res[index++] = edges[i];
+            }
+        }
+        for (Edge edge : res) {
+            if(edge != null){
+                System.out.println(edge);
+            }
+        }
     }
 
 }
@@ -62,7 +86,8 @@ class KruGraph{
         for (int i = 0;i < edges.length;i++){
             for (int j = 0;j <edges.length - 1;j++){
                 Edge temp = null;
-                if(edges[j].getWeight() > edges[j + 1].getWeight()){
+                if(edges[j] != null && edges[j + 1] != null &&
+                        edges[j].getWeight() > edges[j + 1].getWeight()){
                     temp = edges[j];
                     edges[j] = edges[j + 1];
                     edges[j + 1] = temp;
@@ -96,7 +121,19 @@ class KruGraph{
                 }
             }
         }
+        this.edges = edges;
         return edges;
+    }
+    /**
+     * @param ends 终点数组
+     * @param i    需要求终点的节点
+     * @return
+     */
+    public int getEnd(int[] ends,int i){
+        while (ends[i] != 0){
+            i = ends[i];
+        }
+        return i;
     }
 }
 
