@@ -1,7 +1,8 @@
 package com.lmq.commonly;
 
-import java.util.Arrays;
-
+/**
+ * 克鲁斯卡尔算法解决修路问题
+ */
 public class KruskalDemo {
     private static int count;
     public static void main(String[] args) {
