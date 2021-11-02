@@ -35,7 +35,7 @@ class DjiGraph{
         this.line = line;
     }
     public void dji(int index){
-        vv = new VisitVertex(count, index,vertex);
+        vv = new VisitVertex(count,index,vertex);
         update(index);
         for (int i = 1;i < count;i++){
             index = vv.updateArr();
