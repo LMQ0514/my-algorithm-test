@@ -11,7 +11,7 @@ public class Knight {
     private static boolean finish;
 
     public static void main(String[] args) {
-        System.out.println("骑士周游算法，开始运行~~");
+        System.out.println("骑士周游，开始");
         X = 8;
         Y = 8;
         int[][] chessboard = new int[X][Y];
@@ -41,7 +41,6 @@ public class Knight {
                 act(chessboard,point.y,point.x,step + 1);
             }
         }
-
         if(step < X*Y && !finish){
             chessboard[row][column] = 0;
             visited[row][column] = false;
